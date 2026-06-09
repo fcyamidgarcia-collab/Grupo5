@@ -1,0 +1,118 @@
+:root {
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 40px;
+}
+
+.app-tareas {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.zona-entrada {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.zona-entrada input {
+    flex: 1;
+    padding: 8px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    width: 100%;
+}
+
+.zona-entrada button {
+    background-color: #007bff; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: var(--transicion-base);
+}
+
+.zona-entrada button:hover {
+    background-color: #919191;
+    transform: translateY(-1px);
+}
+
+#lista {
+    list-style: none;
+    padding: 0;
+}
+
+#lista li {
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    padding: 14px 20px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+	transition: all 0.25s;
+}
+
+#lista li:hover {
+    background-color: #919191;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.check-box {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #999;
+    margin-right: 10px;
+    transition: var(--transicion-base);
+}
+
+.texto-tarea {
+    flex: 1;
+    transition: var(--transicion-base);
+}
+
+.btn-eliminar {
+    background: none;
+    border: none;
+    color: red;
+    font-size: 20px;
+    cursor: pointer;
+    transition: var(--transicion-base);
+}
+
+.btn-eliminar:hover {
+    background-color: #fff5f5;
+}
+
+
+#lista li.completada {
+    opacity: 0.7; 
+	border-left: black;
+
+}
+
+#lista li.completada .check-box {
+    background-color: #28a745; 
+    border-color: #28a745;
+}
+
+
+#lista li.completada, 
+#lista li.completada .texto-tarea {
+    text-decoration: line-through;
+    color: #888;
+}

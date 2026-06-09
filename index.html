@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Tareas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="app-tareas">
+        <header>
+            <h1>Mis Tareas</h1>
+            <span id="contador">Tareas pendientes</span>
+        </header>
+
+        <section class="zona-entrada">
+            <input type="text" id="in-tarea" placeholder="Escribe una tarea...">
+            <button id="btn-agregar">Añadir</button>
+        </section>
+
+        <section class="zona-lista">
+            <ul id="lista">
+                <li>
+                    <span class="check-box"></span>
+                    <span class="texto-tarea">Revisar código</span>
+                    <button class="btn-eliminar">&times;</button>
+                </li>
+                <li>
+                    <span class="check-box"></span>
+                    <span class="texto-tarea">Estudiar HTML</span>
+                    <button class="btn-eliminar">&times;</button>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
