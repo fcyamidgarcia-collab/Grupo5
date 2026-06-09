@@ -1,18 +1,27 @@
 :root {
+    --color1: #3a6262;
+    --color2: #517f7f;
+    --color3: #6d9595;
+    --color4: #8aa9a9;
+    --color5: #a7bdbd;
+    --color6: #c4d1d1;
+    --color7: #e1e6e6; 
+    --color8: #ffffff;
 }
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: var(--color7);
     margin: 40px;
 }
 
 .app-tareas {
     max-width: 400px;
     margin: 0 auto;
-    background-color: white;
+    background-color: var(--color8);
     padding: 20px;
-    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 header {
@@ -37,8 +46,8 @@ header {
 }
 
 .zona-entrada button {
-    background-color: #007bff; 
-    color: white;
+    background-color: var(--color1); 
+    color: var(--color8);
     border: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -85,10 +94,22 @@ header {
     transition: var(--transicion-base);
 }
 
+#btn-agregar {
+    grid-row: 2; /* Lo alinea en la misma fila que el input */
+    justify-self: end;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: -90px; /* Ajuste para encajar al lado del input */
+}
+
 .btn-eliminar {
     background: none;
     border: none;
-    color: red;
+    color: var(--color1);
     font-size: 20px;
     cursor: pointer;
     transition: var(--transicion-base);
@@ -106,8 +127,8 @@ header {
 }
 
 #lista li.completada .check-box {
-    background-color: #28a745; 
-    border-color: #28a745;
+    background-color: var(--color2); 
+    border-color: var(--color2);
 }
 
 
@@ -116,3 +137,45 @@ header {
     text-decoration: line-through;
     color: #888;
 }
+
+
+/* Contenedor del botón de ocultar */
+.acciones {
+    display: flex;
+    justify-content: center;
+    padding: 15px 0;
+    border-top: 1px solid #eee;
+    margin-top: 15px;
+}
+
+/* Estilo del botón Ocultar/Mostrar */
+#btn-ocultar {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+}
+
+#btn-ocultar:hover {
+    background-color: #e0e0e0;
+}
+
+/* Estado completado (puedes ajustarlo a tu diseño) */
+#lista li.completada .texto-tarea {
+    text-decoration: line-through;
+    color: #888;
+}
+
+#lista li.completada .check-box {
+    background-color: var(--color2); /* Cambia a verde al marcar */
+}
+
+/* Clase que aplicaremos a la lista entera para esconder las completadas */
+.ocultar-completadas .completada {
+    display: none !important;
+}
+
+
