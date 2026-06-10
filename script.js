@@ -1,99 +1,111 @@
-// 1. Seleccionar el #contador con getElementById (y el resto de elementos necesarios)
-const inputTarea = document.getElementById('in-tarea');
-const btnAgregar = document.getElementById('btn-agregar');
-const lista = document.getElementById('lista');
-const btnOcultar = document.getElementById('btn-ocultar');
-const contador = document.getElementById('contador'); 
+const inputTarea = document.getElementById("nueva-tarea");
+const btnAgregar = document.getElementById("btn-agregar");
+const btnOcultar = document.getElementById("btn-ocultar");
+const lista = document.getElementById("lista");
+const contador = document.getElementById("contador");
+let completadasOcultas = false;
 
-// 2 y 3. Función actualizarContador() creada para contar los <li> que NO tienen la clase .completada
-function actualizarContador() {
-    // 3. Usar querySelectorAll("#lista li:not(.completada)").length para obtener el conteo exacto
-    const pendientes = document.querySelectorAll("#lista li:not(.completada)").length;
-    
-    // 4. Actualizar contador.textContent con el número obtenido cada vez que se llama la función
-    if (pendientes === 1) {
-        contador.textContent = '1 tarea pendiente';
-    } else {
-        contador.textContent = `${pendientes} tareas pendientes`;
-    }
+function mostrarError() {
+    inputTarea.classList.add("input-error");
+    const placeholderOriginal = inputTarea.placeholder;
+    inputTarea.placeholder = "Escribe una tarea válida";
+
+    setTimeout(() => {
+        inputTarea.classList.remove("input-error");
+        inputTarea.placeholder = placeholderOriginal;
+    }, 1200);
 }
 
-// Función para añadir una tarea
+function actualizarContador() {
+    const pendientes = document.querySelectorAll("#lista li:not(.completada)").length;
+    contador.textContent = `Tareas: ${pendientes}`;
+}
+
 function agregarTarea() {
-    const texto = inputTarea.value.trim();
-    
-    // Validación de campo vacío
-    if (texto === '') {
-        const placeholderOriginal = inputTarea.placeholder;
-        inputTarea.placeholder = '¡Escribe una tarea válida!';
-        inputTarea.value = ''; 
-        
-        setTimeout(() => {
-            inputTarea.placeholder = placeholderOriginal;
-        }, 1200);
+    const valor = inputTarea.value.trim();
+    if (!valor) {
+        mostrarError();
         return;
     }
 
-    // Crear la estructura de la tarea
-    const li = document.createElement('li');
-    li.innerHTML = `
-        <span class="check-box"></span>
-        <span class="texto-tarea">${texto}</span>
-        <button class="btn-eliminar">&times;</button>
-    `;
+    const li = document.createElement("li");
+    const checkbox = document.createElement("span");
+    checkbox.className = "checkbox";
 
-    // Añadir el nuevo elemento al UL
+    const texto = document.createElement("span");
+    texto.className = "tarea-texto";
+    texto.textContent = valor;
+
+    const eliminar = document.createElement("button");
+    eliminar.className = "btn-eliminar";
+    eliminar.type = "button";
+    eliminar.textContent = "Eliminar";
+
+    li.appendChild(checkbox);
+    li.appendChild(texto);
+    li.appendChild(eliminar);
     lista.appendChild(li);
 
-    // 5. Llamar a actualizarContador() al final de la función de agregar tarea
-    actualizarContador();
-
-    // Limpiar y enfocar el input
-    inputTarea.value = ''; 
+    inputTarea.value = "";
     inputTarea.focus();
+    actualizarContador();
 }
 
-// Escuchadores de eventos para la creación de tareas
-btnAgregar.addEventListener('click', agregarTarea);
+btnAgregar.addEventListener("click", agregarTarea);
 
-inputTarea.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
+inputTarea.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        e.preventDefault();
         agregarTarea();
     }
 });
 
-// Listener de delegación en el UL (Detecta clicks en toda la lista)
-lista.addEventListener('click', (e) => {
-    const elementoClickeado = e.target;
-
-    // Acción para eliminar la tarea
-    if (elementoClickeado.classList.contains('btn-eliminar')) {
-        e.stopPropagation(); // Evita que se dispare el click del LI contenedor
-        elementoClickeado.parentElement.remove(); 
-        // Se llama aquí también para actualizar si se destruye un LI pendiente
-        actualizarContador(); 
-        return; 
+lista.addEventListener("click", (e) => {
+    const target = e.target;
+    if (target.classList.contains("btn-eliminar")) {
+        const tarea = target.closest("li");
+        if (tarea) {
+            tarea.remove();
+            actualizarContador();
+        }
+        return;
     }
 
-    // Acción cuando un LI es clickeado
-    const li = elementoClickeado.closest('li');
-    if (li) {
-        li.classList.toggle('completada'); 
-        // 5. Llamar a actualizarContador() dentro del listener de delegación en el ul
-        actualizarContador(); 
+    const tarea = target.closest("li");
+    if (!tarea) {
+        return;
+    }
+
+    if (target.classList.contains("checkbox") || target.classList.contains("tarea-texto") || target.tagName === "LI") {
+        tarea.classList.toggle("completada");
+
+        if (completadasOcultas && tarea.classList.contains("completada")) {
+            tarea.style.display = "none";
+        } else if (!completadasOcultas) {
+            tarea.style.display = "flex";
+        }
+
+        actualizarContador();
     }
 });
 
-// Lógica para el botón de Ocultar/Mostrar completadas
-btnOcultar.addEventListener('click', () => {
-    lista.classList.toggle('ocultar-completadas');
-    
-    if (lista.classList.contains('ocultar-completadas')) {
-        btnOcultar.innerHTML = '👀 Mostrar Completadas';
+btnOcultar.addEventListener("click", () => {
+    const completas = document.querySelectorAll("#lista li.completada");
+    if (!completadasOcultas) {
+        completas.forEach((item) => {
+            item.style.display = "none";
+        });
+        btnOcultar.textContent = "Terminadas Ocultas";
+        btnOcultar.style.backgroundColor = "#5e8a61";
+        completadasOcultas = true;
     } else {
-        btnOcultar.innerHTML = '🙈 Ocultar Completadas';
+        completas.forEach((item) => {
+            item.style.display = "flex";
+        });
+        btnOcultar.textContent = "Ocultar Completadas";
+        btnOcultar.style.backgroundColor = "";
+        completadasOcultas = false;
     }
 });
 
-// 6. Inicialización: Ejecuta el conteo inicial apenas carga el DOM con las tareas base
 actualizarContador();

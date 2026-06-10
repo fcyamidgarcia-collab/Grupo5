@@ -1,0 +1,236 @@
+:root{
+    --color1: #3a6262;
+    --color2: #517f7f;
+    --color3: #6d9595;
+    --color4: #8aa9a9;
+    --color5: #a7bdbd;
+    --color6: #c4d1d1;
+    --color7: #e1e6e6;
+    --color8: #ffffff;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--color6);
+    margin: 40px;
+}
+
+.contenedor{
+    max-width: 520px;
+    margin: 48px auto;
+    background-color: var(--color7);
+    padding: 32px;
+    border: 1px solid var(--color5);
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+header{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.entrada-tareas{
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+#nueva-tarea{
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--color6);
+    border-radius: 5px;
+}
+
+#btn-agregar{
+    padding: 10px 20px;
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--color8);
+    color: var(--color1);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#btn-agregar:hover{
+    background-color: var(--color6);
+}
+
+.lista-tareas{
+    width: 100%;
+    padding: 0;
+}
+
+.lista-tareas ul{
+    list-style: none;
+    padding: 14px 20px;
+    margin: 0;
+}
+
+.lista-tareas li{
+    background-color: var(--color6);
+    color: var(--color1);
+    border-left: 4px solid var(--color1);
+    padding: 18px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: slideIn 0.3s ease forwards;
+    transition: background-color 0.3s ease, color 0.3s ease, text-decoration 0.3s ease, transform 0.2s ease;
+    font-size: 1.05rem;
+}
+
+.lista-tareas li:hover{
+    background-color: var(--color5);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.checkbox {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #999;
+    border-radius: 4px;
+    margin-right: 10px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.completada .checkbox {
+    border-color: var(--color1);
+    background-color: var(--color1);
+}
+
+.texto-info {
+    margin: 0 0 12px 0;
+    font-size: 1rem;
+    color: var(--color1);
+    text-align: left;
+}
+
+.texto-tarea {
+    flex: 1;
+}
+
+.btn-eliminar{
+    background-color: var(--color4);
+    color: var(--color8);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-eliminar:hover{
+    background-color: var(--color3);
+}
+
+#btn-ocultar {
+    background-color: #7d5fa6;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+#btn-ocultar:hover {
+    background-color: #6a4c8a;
+}
+
+#btn-ocultar:active,
+#btn-agregar:active,
+.btn-eliminar:active {
+    transform: scale(0.96);
+}
+
+.completada .tarea-texto {
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 600px) {
+    .contenedor {
+        width: 90%;
+        margin: 24px auto;
+        padding-bottom: 60px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .entrada-tareas {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #nueva-tarea,
+    #btn-agregar {
+        width: 100%;
+    }
+
+    #btn-agregar {
+        margin-top: 10px;
+    }
+
+    .lista-tareas li {
+        padding: 18px;
+    }
+}
+
+.oculto {
+    display: none;
+}
+
+.input-error {
+    animation: vibrar 0.3s ease-in-out;
+    border-color: #d9534f;
+}
+
+@keyframes vibrar {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    50% { transform: translateX(3px); }
+    75% { transform: translateX(-3px); }
+    100% { transform: translateX(0); }
+}
+.acciones{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.acciones button{
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+}
+
+.acciones button:hover:not(#btn-ocultar){
+    background-color: var(--color6);
+}

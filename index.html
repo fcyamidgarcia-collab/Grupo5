@@ -1,43 +1,45 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis Tareas</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
 </head>
 <body>
-
-    <main class="app-tareas">
+    <main class="contenedor">
         <header>
             <h1>Mis Tareas</h1>
-            <span id="contador">Tareas pendientes</span>
+            <span id="contador">Tareas: 0</span>
         </header>
-
-        <section class="zona-entrada">
-            <input type="text" id="in-tarea" placeholder="Escribe una tarea...">
-            <button id="btn-agregar">Añadir</button>
+    
+        <section class="entrada-tareas">
+            <input type="text" id="nueva-tarea" placeholder="Agregar nueva tarea">
+            <button id="btn-agregar">Agregar</button>
         </section>
 
-        <section class="zona-lista">
+        <p class="texto-info">Mis Pendientes</p>
+
+        <section class="lista-tareas">
             <ul id="lista">
                 <li>
-                    <span class="check-box"></span>
-                    <span class="texto-tarea">Revisar código</span>
-                    <button class="btn-eliminar">&times;</button>
+                    <span class="checkbox"></span>
+                    <span class="tarea-texto">Revisar Código</span>
+                    <button class="btn-eliminar">Eliminar</button>
                 </li>
                 <li>
-                    <span class="check-box"></span>
-                    <span class="texto-tarea">Estudiar HTML</span>
-                    <button class="btn-eliminar">&times;</button>
+                    <span class="checkbox"></span>
+                    <span class="tarea-texto">Hacer Commit</span>
+                    <button class="btn-eliminar">Eliminar</button>
                 </li>
             </ul>
-            
-            <nav class="acciones">
-                <button id="btn-ocultar"> Ocultar Completadas</button>
-            </nav>
-            
         </section>
+        <nav class="acciones">
+            <button id="btn-ocultar">Ocultar Completadas</button>
+        </nav>
     </main>
     <script src="script.js"></script>
 </body>
