@@ -48,6 +48,7 @@ header{
     border-radius: 5px;
 }
 
+/*--Fase 1 Yamid Garcia Estilos CSS --*/
 #btn-agregar{
     padding: 10px 20px;
     font-family: 'Outfit', sans-serif;
@@ -58,6 +59,7 @@ header{
     cursor: pointer;
 }
 
+/*--Fase 1 Yamid Garcia Estilos CSS --*/
 #btn-agregar:hover{
     background-color: var(--color6);
 }
@@ -73,6 +75,7 @@ header{
     margin: 0;
 }
 
+/*--Fase 1 Yamid Garcia Estilos CSS --*/
 .lista-tareas li{
     background-color: var(--color6);
     color: var(--color1);
@@ -89,6 +92,7 @@ header{
     font-size: 1.05rem;
 }
 
+/*--Fase 1 Yamid Garcia Estilos CSS --*/
 .lista-tareas li:hover{
     background-color: var(--color5);
     transform: translateY(-1px);
@@ -133,9 +137,12 @@ header{
     transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
+/*--Fase 1 Yamid Garcia Estilos CSS --*/
 .btn-eliminar:hover{
     background-color: var(--color3);
 }
+
+/*--Fase 2 Yamid Garcia Botones de limpieza --*/
 
 #btn-ocultar {
     background-color: #7d5fa6;
@@ -148,10 +155,12 @@ header{
     transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
+/*--Fase 1 Yamid Garcia Estilos CSS --*/
 #btn-ocultar:hover {
     background-color: #6a4c8a;
 }
 
+/*--Fase 2 Esteban Chaparro Rol 3 y 4--*/
 #btn-ocultar:active,
 #btn-agregar:active,
 .btn-eliminar:active {
@@ -163,6 +172,7 @@ header{
     opacity: 0.7;
 }
 
+/*--Fase 2 Esteban Chaparro Rol 3 y 4--*/
 @keyframes slideIn {
     from {
         transform: translateX(-20px);

@@ -1,8 +1,11 @@
+//Fase 2 - Hadkier Barraygan y Juan Rincon
+// Selección de elementos requeridos como el imput botones lista y contador
 const inputTarea = document.getElementById("nueva-tarea");
 const btnAgregar = document.getElementById("btn-agregar");
 const btnOcultar = document.getElementById("btn-ocultar");
 const lista = document.getElementById("lista");
 const contador = document.getElementById("contador");
+
 let completadasOcultas = false;
 
 function mostrarError() {
@@ -16,19 +19,25 @@ function mostrarError() {
     }, 1200);
 }
 
+// Cuenta únicamente las tareas pendientes 
 function actualizarContador() {
     const pendientes = document.querySelectorAll("#lista li:not(.completada)").length;
     contador.textContent = `Tareas: ${pendientes}`;
 }
 
+// Agrega una nueva tarea a la lista
 function agregarTarea() {
     const valor = inputTarea.value.trim();
+
+    // Validación para evitar tareas vacías
     if (!valor) {
         mostrarError();
         return;
     }
 
+    // aqui se crea el elemento Li
     const li = document.createElement("li");
+
     const checkbox = document.createElement("span");
     checkbox.className = "checkbox";
 
@@ -46,13 +55,18 @@ function agregarTarea() {
     li.appendChild(eliminar);
     lista.appendChild(li);
 
+    // Limpia el input y devuelve el foco
     inputTarea.value = "";
     inputTarea.focus();
+
+    // Actualiza el número de tareas pendientes
     actualizarContador();
 }
 
+// Permite agregar tareas con el botón
 btnAgregar.addEventListener("click", agregarTarea);
 
+// Permite agregar tareas usando la tecla Enter
 inputTarea.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
         e.preventDefault();
@@ -60,8 +74,11 @@ inputTarea.addEventListener("keydown", (e) => {
     }
 });
 
+// Delegación de eventos sobre la lista
 lista.addEventListener("click", (e) => {
     const target = e.target;
+
+    // Elimina una tarea seleccionada
     if (target.classList.contains("btn-eliminar")) {
         const tarea = target.closest("li");
         if (tarea) {
@@ -72,11 +89,17 @@ lista.addEventListener("click", (e) => {
     }
 
     const tarea = target.closest("li");
+
     if (!tarea) {
         return;
     }
 
-    if (target.classList.contains("checkbox") || target.classList.contains("tarea-texto") || target.tagName === "LI") {
+    // Marca o desmarca una tarea como completada
+    if (
+        target.classList.contains("checkbox") ||
+        target.classList.contains("tarea-texto") ||
+        target.tagName === "LI"
+    ) {
         tarea.classList.toggle("completada");
 
         if (completadasOcultas && tarea.classList.contains("completada")) {
@@ -89,13 +112,15 @@ lista.addEventListener("click", (e) => {
     }
 });
 
-/*--Fase */
+// Oculta o muestra las tareas completadas
 btnOcultar.addEventListener("click", () => {
     const completas = document.querySelectorAll("#lista li.completada");
+
     if (!completadasOcultas) {
         completas.forEach((item) => {
             item.style.display = "none";
         });
+
         btnOcultar.textContent = "Terminadas Ocultas";
         btnOcultar.style.backgroundColor = "#5e8a61";
         completadasOcultas = true;
@@ -103,10 +128,12 @@ btnOcultar.addEventListener("click", () => {
         completas.forEach((item) => {
             item.style.display = "flex";
         });
+
         btnOcultar.textContent = "Ocultar Completadas";
         btnOcultar.style.backgroundColor = "";
         completadasOcultas = false;
     }
 });
 
+// Inicializa el contador al cargar la aplicación
 actualizarContador();
