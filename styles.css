@@ -1,3 +1,4 @@
+/*--Fase 1 Esteban Chaparro Lead Arqutecto --*/
 :root{
     --color1: #3a6262;
     --color2: #517f7f;
@@ -12,13 +13,13 @@
 *, *::before, *::after {
     box-sizing: border-box;
 }
-
+/*--Fase 1 Esteban Chaparro Lead Arqutecto --*/
 body{
     font-family: 'Outfit', sans-serif;
     background-color: var(--color6);
     margin: 40px;
 }
-
+/*--Fase 1 Esteban Chaparro Lead Arqutecto --*/
 .contenedor{
     max-width: 520px;
     margin: 48px auto;
@@ -39,7 +40,7 @@ header{
     gap: 15px;
     margin-bottom: 20px;
 }
-
+/*--Fase 1 Esteban Chaparro Lead Arqutecto --*/
 #nueva-tarea{
     flex: 1;
     padding: 10px;

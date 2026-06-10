@@ -89,6 +89,7 @@ lista.addEventListener("click", (e) => {
     }
 });
 
+/*--Fase */
 btnOcultar.addEventListener("click", () => {
     const completas = document.querySelectorAll("#lista li.completada");
     if (!completadasOcultas) {
